@@ -5,6 +5,20 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// generator nestjsDto {
+//   provider                        = "prisma-generator-nestjs-dto"
+//   output                          = "../src/generated/nestjs-dto"
+//   outputToNestJsResourceStructure = "true"
+//   exportRelationModifierClasses   = "true"
+//   reExport                        = "false"
+//   createDtoPrefix                 = "Create"
+//   updateDtoPrefix                 = "Update"
+//   dtoSuffix                       = "Dto"
+//   entityPrefix                    = ""
+//   entitySuffix                    = ""
+//   fileNamingStyle                 = "camel"
+// }
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -12,12 +26,7 @@ datasource db {
 
 model Appliers {
   userId Int      @id
-  name   String
-  role   String
-  iat    Int
-  exp    Int
-  iss    String
-  sub    Int
+  /// @DtoRelationRequired
   movie  Movies[]
 }
 
@@ -27,5 +36,7 @@ model Movies {
   released String
   genre    String
   director String
+  /// @DtoRelationRequired
   applier  Appliers[]
 }
+
