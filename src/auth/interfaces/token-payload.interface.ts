@@ -1,4 +1,4 @@
-export interface TokenPalyload {
+export interface TokenPayload {
   userId: number;
   name: string;
   role: 'basic' | 'premium';
