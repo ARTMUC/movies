@@ -25,18 +25,24 @@ datasource db {
 }
 
 model Appliers {
-  userId Int      @id
-  /// @DtoRelationRequired
-  movie  Movies[]
+  userId Int                @id
+  movies MoviesOnAppliers[]
 }
 
 model Movies {
-  id       String     @id @default(uuid())
+  id       String             @id @default(uuid())
   title    String
   released String
   genre    String
   director String
-  /// @DtoRelationRequired
-  applier  Appliers[]
+  appliers MoviesOnAppliers[]
 }
 
+model MoviesOnAppliers {
+  id             String    @id @default(uuid())
+  appliers       Appliers? @relation(fields: [appliersUserId], references: [userId])
+  appliersUserId Int?
+  movies         Movies?   @relation(fields: [moviesId], references: [id])
+  moviesId       String?
+  createdAt      DateTime  @default(now())
+}
