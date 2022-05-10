@@ -1,0 +1,4 @@
+DATABASE_URL="postgresql://admin:admin@postgres:5432/nestjs?schema=public"
+JWT_SECRET = secret
+JWT_EXPIRATION_TIME = 1800
+MOVIES_API_KEY = 9179bdc4
